@@ -12,7 +12,7 @@ def solve(matrix, row, col):
 
         while check:
 
-            if int(matrix[row_count][col_count]) == 0:
+            if float(matrix[row_count][col_count]) == 0:
 
                 col_count += 1
 
@@ -24,13 +24,13 @@ def solve(matrix, row, col):
 
             jumper = 0
 
-            if int(matrix[row_count][col_count]) != 1:
+            if float(matrix[row_count][col_count]) != 1:
 
-                divider = int(matrix[row_count][col_count])
+                divider = float(matrix[row_count][col_count])
 
                 while jumper < col:
 
-                    matrix[row_count][jumper] = int(matrix[row_count][jumper])/divider
+                    matrix[row_count][jumper] = float(matrix[row_count][jumper])/divider
 
                     jumper += 1
 
@@ -66,15 +66,15 @@ def solve(matrix, row, col):
 
             if next_row != row_count:
             
-                if int(matrix[next_row][col_count]) != 0:
+                if float(matrix[next_row][col_count]) != 0:
 
-                    multiplier = int(matrix[next_row][col_count])
+                    multiplier = float(matrix[next_row][col_count])
 
                     jumper = col_count
 
                     while jumper < col:
 
-                        matrix[next_row][jumper] = int(matrix[next_row][jumper]) - (multiplier * int(matrix[row_count][jumper]))
+                        matrix[next_row][jumper] = float(matrix[next_row][jumper]) - (multiplier * float(matrix[row_count][jumper]))
 
                         jumper += 1
 
@@ -116,7 +116,7 @@ def solve(matrix, row, col):
 
         for j in range(0, col):
 
-            data = int(matrix[i][j])
+            data = float(matrix[i][j])
 
             if data == -0:
 
@@ -190,9 +190,9 @@ def main():
 
                 zero_count = 0
 
-                for i in matrix[row - 1]:
+                for i in range(0, col - 2):
 
-                    if i == 0:
+                    if matrix[row - 1][i] == 0:
 
                         zero_count += 1
 
