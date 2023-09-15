@@ -34,7 +34,7 @@ def solve(matrix, row, col):
 
                     jumper += 1
 
-                print(f'\nStep {step}: R{row_count+1}/{divider}')
+                print(f'\nStep {step}: R{row_count+1}/{round(divider, 2)}')
 
                 step += 1
 
@@ -78,7 +78,7 @@ def solve(matrix, row, col):
 
                         jumper += 1
 
-                    print(f'\nStep {step}: R{next_row+1}-({multiplier}R{row_count+1})')
+                    print(f'\nStep {step}: R{next_row+1}-(({round(multiplier, 2)})R{row_count+1})')
 
                     step += 1
 
