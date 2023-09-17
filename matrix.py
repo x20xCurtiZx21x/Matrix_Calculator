@@ -12,9 +12,15 @@ def solve(matrix, row ,col):
 
         while check:
 
-            if float(matrix[row_count][col_count]) == 0:
+            if col_count < col - 1:
 
-                col_count += 1
+                if float(matrix[row_count][col_count]) == 0:
+
+                    col_count += 1
+
+                else:
+
+                    check = False
 
             else:
 
@@ -24,7 +30,7 @@ def solve(matrix, row ,col):
 
             jumper = 0
 
-            if float(matrix[row_count][col_count]) != 1:
+            if float(matrix[row_count][col_count]) != 1 and float(matrix[row_count][col_count]) != 0:
 
                 divider = float(matrix[row_count][col_count])
 
@@ -304,7 +310,7 @@ def main():
 
                         while row_count < row:
 
-                            new_row = input(f"Enter row {row_count + 1}: ")
+                            new_row = input(f"Enter row {row_count + 1}(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -322,15 +328,23 @@ def main():
 
                         zero_count = 0
 
-                        for i in range(0, col - 2):
+                        for i in range(0, col - 1):
 
                             if matrix[row - 1][i] == 0:
 
                                 zero_count += 1
 
-                        if zero_count > col - 2:
+                        if zero_count > col - 2 and (matrix[row-1][col-1] != 0):
 
-                            print('\nThis is not a Linear Combination as the Matix is inconsistent')
+                            print("\nHere I found the Matrix to be inconsistent")
+
+                            print('This is also not a Linear Combination due to the inconsistency')
+
+                        elif zero_count == col - 1:
+
+                            print('\nHere I found the Matrix to have infinitely many solutions')
+
+                            print('The value for "z" could be any real integer as 0 = 0\n')
 
                         print('')
 
@@ -362,7 +376,7 @@ def main():
 
                         while row_count < row:
 
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 1: ")
+                            new_row = input(f"Enter row {row_count + 1} for Matrix 1(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -374,7 +388,7 @@ def main():
 
                         while row_count < row:
 
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 2: ")
+                            new_row = input(f"Enter row {row_count + 1} for Matrix 2(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -420,7 +434,7 @@ def main():
 
                         while row_count < row:
 
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 1: ")
+                            new_row = input(f"Enter row {row_count + 1} for Matrix 1(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -432,7 +446,7 @@ def main():
 
                         while row_count < row:
 
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 2: ")
+                            new_row = input(f"Enter row {row_count + 1} for Matrix 2(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -482,7 +496,7 @@ def main():
 
                         while row_count < row1:
 
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 1: ")
+                            new_row = input(f"Enter row {row_count + 1} for Matrix 1(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -494,7 +508,7 @@ def main():
 
                         while row_count < row2:
 
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 2: ")
+                            new_row = input(f"Enter row {row_count + 1} for Matrix 2(Enter numbers comma separated with no spaces): ")
 
                             new_row = new_row.split(",")
 
@@ -516,7 +530,7 @@ def main():
 
                         print('\nMatrices must have columns and rows greater than 0')
 
-                        print("And to multiply Matrices, Matrix #1 number of columns must equal Matrix #2 number of rows\n")
+                        print("To multiply Matrices, Matrix #1 number of columns must equal Matrix #2 number of rows as well\n")
 
                 except:
 
