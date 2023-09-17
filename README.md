@@ -1,4 +1,4 @@
-# Matrix_Calculator
+# Matrix Calculator
 This matrix calculator makes basic matrix calculations using algorithms and methods
 taught in a Linear Algebra course I took.
 
