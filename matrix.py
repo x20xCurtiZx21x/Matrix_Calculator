@@ -198,7 +198,7 @@ def multiply(m1, m2, row1, col1, col2):
 
     return new_matrix
 
-def determinant(matrix):
+def determinant(matrix, display = None):
 
     if len(matrix) == 1:
 
@@ -210,9 +210,19 @@ def determinant(matrix):
 
         sub = [row[:col] + row[col+1:] for row in matrix[1:]]
 
-        subDet = determinant(sub)
+        subDet = determinant(sub, display)
 
-        det += ((-1)**col)*float(matrix[0][col])*determinant(sub)
+        if display == None:
+
+            display = f'[({(-1)**col})({float(matrix[0][col])})({subDet})]'
+
+        else:
+
+            display = display + f' + [({(-1)**col})({float(matrix[0][col])})({subDet})]'
+
+        det += ((-1)**col)*float(matrix[0][col])*subDet
+
+        print(f'\n{display}')
 
     return det
 
@@ -565,6 +575,8 @@ def main():
                         print('\nInputted Matrix:')
 
                         print_matrix(matrix, row, col, False)
+
+                        print('\nHere is my work:')
 
                         det = determinant(matrix)
 
