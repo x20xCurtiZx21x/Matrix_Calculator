@@ -26,11 +26,12 @@ features to make other matrix calculations!
 ## Anything planned for the Future?
 Here are a few things I am working on adding to the calculator:
 - Showing steps in calculating the determinant
-- Matrix Division? (There isn't any matrix division, but it would be similar to multiplying
+- Matrix Division? (Matrix division isn't really a thing, but it would be similar to multiplying
 an inverse of a matrix to another matrix)
+- Touch up stuff, such as fixing typos and simplifying code
 - Other Suggestions others may think should be included!
 
-## Questions?
+## Questions or Suggestions?
 If you have any questions, feel free to reach me:
 - curtischase6@gmail.com
 - curtischase6@ku.edu
