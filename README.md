@@ -20,11 +20,14 @@ features to make other matrix calculations!
 - Adding Matrices
 - Subtracting Matrices
 - Multiplying Matrices
+- Calculating the Determinant
+- Calculating the Inverse
 
 ## Anything planned for the Future?
 Here are a few things I am working on adding to the calculator:
-- Calculating the Determinant
-- Finding the Inverse of the Matrix
+- Showing steps in calculating the determinant
+- Matrix Division? (There isn't any matrix division, but it would be similar to multiplying
+an inverse of a matrix to another matrix)
 - Other Suggestions others may think should be included!
 
 ## Questions?
