@@ -1,4 +1,4 @@
-def solve(matrix, row ,col):
+def solve(matrix, row,col):
 
     row_count = 0
 
@@ -198,6 +198,66 @@ def multiply(m1, m2, row1, col1, col2):
 
     return new_matrix
 
+def determinant(matrix):
+
+    if len(matrix) == 1:
+
+        return float(matrix[0][0])
+
+    det = 0
+
+    for col in range(len(matrix)):
+
+        sub = [row[:col] + row[col+1:] for row in matrix[1:]]
+
+        subDet = determinant(sub)
+
+        det += ((-1)**col)*float(matrix[0][col])*determinant(sub)
+
+    return det
+
+def inverse(matrix, row, col):
+
+    if (row == 1) and (col == 1):
+
+        return matrix
+
+    new_matrix = []
+
+    new_col = col * 2
+
+    row_count = 0
+
+    while row_count < row:
+
+        temp = matrix[row_count]
+
+        col_count = 0
+
+        while col_count < col:
+
+            if col_count == row_count:
+
+                temp.append('1')
+
+            else:
+
+                temp.append('0')
+                
+            col_count += 1
+
+        new_matrix.append(temp)
+
+        row_count += 1
+
+    print('\nThe Setup:')
+
+    print_matrix(new_matrix, row, new_col, False)
+
+    new_matrix = solve(new_matrix, row, new_col)
+
+    return new_matrix
+
 def print_matrix(matrix, row, col, solve = True, steps = False):
 
     if solve:
@@ -264,15 +324,39 @@ def print_matrix(matrix, row, col, solve = True, steps = False):
 
             print(num_str + "\t|")
 
+def userMatrix(row, col):
+
+    matrix = []
+
+    print("")
+
+    row_count = 0
+
+    while row_count < row:
+
+        new_row = input(f"Enter row {row_count + 1}(Enter numbers comma separated with no spaces): ")
+
+        new_row = new_row.split(",")
+
+        if len(new_row) > col or len(new_row) < col:
+
+            raise IndexError
+
+        matrix.append(new_row)
+
+        row_count += 1
+
+    return matrix
+
 def main():
 
-    print("====Welcome to Chase's Matrix Solver====\n")
+    print("====Welcome to Chase's Matrix Solver====")
 
     count = 0
 
     while count == 0:
 
-        print('1) Solve Matrix(RREF)')
+        print('\n1) Solve Matrix(RREF)')
 
         print('2) Add Matrices')
 
@@ -280,7 +364,11 @@ def main():
 
         print('4) Multiply Matrices')
 
-        print('5) Exit\n')
+        print('5) Calculate the Determinant(No Steps)')
+
+        print('6) Calculate the Inverse')
+
+        print('7) Exit\n')
 
         try:
 
@@ -290,11 +378,9 @@ def main():
 
             userChoice = 0
 
-        if userChoice < 5 and userChoice != 0:
+        if userChoice < 7 and userChoice != 0:
 
             if userChoice == 1:
-
-                matrix = []
 
                 try:
 
@@ -304,19 +390,7 @@ def main():
 
                     if row > 1 and col > 1:
 
-                        print("")
-
-                        row_count = 0
-
-                        while row_count < row:
-
-                            new_row = input(f"Enter row {row_count + 1}(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            matrix.append(new_row)
-
-                            row_count += 1
+                        matrix = userMatrix(row, col)
 
                         matrix = solve(matrix, row, col)
 
@@ -344,23 +418,17 @@ def main():
 
                             print('\nHere I found the Matrix to have infinitely many solutions')
 
-                            print('The value for "z" could be any real integer as 0 = 0\n')
-
-                        print('')
+                            print('The value for "z" could be any real integer as 0 = 0')
 
                     else:
 
-                        print("\nMatrices must have columns and rows greater than 1\n")
+                        print("\nMatrices must have columns and rows greater than 1")
 
                 except:
 
-                    print("Try Again\n")
+                    print("\nYou may have typed something wrong. Please try again")
 
             elif userChoice == 2:
-
-                m1 = []
-
-                m2 = []
 
                 try:
 
@@ -370,31 +438,9 @@ def main():
 
                     if row > 0 and col > 0:
 
-                        print('')
+                        m1 = userMatrix(row, col)
 
-                        row_count = 0
-
-                        while row_count < row:
-
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 1(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            m1.append(new_row)
-
-                            row_count += 1
-
-                        row_count = 0
-
-                        while row_count < row:
-
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 2(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            m2.append(new_row)
-
-                            row_count += 1
+                        m2 = userMatrix(row, col)
 
                         matrix = add(m1, m2, row, col)
 
@@ -404,21 +450,15 @@ def main():
 
                         print_matrix(matrix,row,col,False)
 
-                        print('')
-
                     else:
 
-                        print('\nMatrices must have columns and rows greater than 0\n')
+                        print('\nMatrices must have columns and rows greater than 0')
 
                 except:
 
-                    print('Try Again\n')
+                    print("\nYou may have typed something wrong. Please try again")
 
             elif userChoice == 3:
-
-                m1 = []
-
-                m2 = []
 
                 try:
 
@@ -428,31 +468,9 @@ def main():
 
                     if row > 0 and col > 0:
 
-                        print('')
+                        m1 = userMatrix(row, col)
 
-                        row_count = 0
-
-                        while row_count < row:
-
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 1(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            m1.append(new_row)
-
-                            row_count += 1
-
-                        row_count = 0
-
-                        while row_count < row:
-
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 2(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            m2.append(new_row)
-
-                            row_count += 1
+                        m2 = userMatrix(row, col)
 
                         matrix = subtract(m1, m2, row, col)
 
@@ -462,21 +480,15 @@ def main():
 
                         print_matrix(matrix,row,col,False)
 
-                        print('')
-
                     else:
 
-                        print('\nMatrices must have columns and rows greater than 0\n')
+                        print('\nMatrices must have columns and rows greater than 0')
 
                 except:
 
-                    print('Try Again\n')
+                    print("\nYou may have typed something wrong. Please try again")
 
-            else:
-
-                m1 = []
-
-                m2 = []
+            elif userChoice == 4:
 
                 try:
 
@@ -490,31 +502,9 @@ def main():
 
                     if (col1 == row2) and (row1 > 0) and (col1 > 0) and (row2 > 0) and (col2 > 0):
 
-                        print('')
+                        m1 = userMatrix(row1, col1)
 
-                        row_count = 0
-
-                        while row_count < row1:
-
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 1(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            m1.append(new_row)
-
-                            row_count += 1
-
-                        row_count = 0
-
-                        while row_count < row2:
-
-                            new_row = input(f"Enter row {row_count + 1} for Matrix 2(Enter numbers comma separated with no spaces): ")
-
-                            new_row = new_row.split(",")
-
-                            m2.append(new_row)
-
-                            row_count += 1
+                        m2 = userMatrix(row2, col2)
 
                         matrix = multiply(m1, m2, row1, col1, col2)
 
@@ -524,19 +514,87 @@ def main():
 
                         print_matrix(matrix,row1,col2,False)
 
-                        print('')
-
                     else:
 
                         print('\nMatrices must have columns and rows greater than 0')
 
-                        print("To multiply Matrices, Matrix #1 number of columns must equal Matrix #2 number of rows as well\n")
+                        print("To multiply Matrices, Matrix #1 number of columns must equal Matrix #2 number of rows as well")
 
                 except:
 
-                    print('Try Again\n')
+                    print("\nYou may have typed something wrong. Please try again")
 
-        elif userChoice == 5:
+            elif userChoice == 5:
+
+                try:
+
+                    row = int(input("Enter amount of rows: "))
+
+                    col = int(input("Enter amount of columns: "))
+
+                    if (row == col) and (row > 0) and (col > 0):
+
+                        matrix = userMatrix(row, col)
+
+                        det = determinant(matrix)
+
+                        print('\nFinal Answer:')
+
+                        print(det)
+
+                    else:
+
+                        print('\nThere is no determinant possible as the matrix is not a square matrix')
+
+                except:
+
+                    print("\nYou may have typed something wrong. Please try again")
+
+            else:
+
+                try:
+
+                    row = int(input("Enter amount of rows: "))
+
+                    col = int(input("Enter amount of columns: "))
+
+                    if (row == col) and (row > 0) and (col > 0):
+
+                        matrix = userMatrix(row, col)
+
+                        new_matrix = inverse(matrix, row, col)
+
+                        final = []
+
+                        if (row != 1) and (col != 1):
+
+                            for i in range(0, row):
+
+                                temp = []
+
+                                for j in range(col, col*2):
+
+                                    temp.append(new_matrix[i][j])
+
+                                final.append(temp)
+
+                        else:
+
+                            final.append('1')
+
+                        print('\nFinal Answer:')
+
+                        print_matrix(final,row,col,False)
+
+                    else:
+
+                        print('\nThere is no inverse possible as the matrix is not a square matrix')
+
+                except:
+
+                    print("\nYou may have typed something wrong. Please try again")                    
+
+        elif userChoice == 7:
 
             count = 1
 
@@ -544,6 +602,6 @@ def main():
 
         else:
 
-            print("Try Again\n")
+            print("\nYou may have typed something wrong. Please try again")
 
 main()
