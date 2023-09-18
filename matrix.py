@@ -392,11 +392,13 @@ def main():
 
                         matrix = userMatrix(row, col)
 
+                        print('\nInputted Matrix:')
+
+                        print_matrix(matrix, row, col)
+
                         matrix = solve(matrix, row, col)
 
-                        print('')
-
-                        print('Final Answer:')
+                        print('\nFinal Answer:')
 
                         print_matrix(matrix, row, col)
 
@@ -440,7 +442,15 @@ def main():
 
                         m1 = userMatrix(row, col)
 
+                        print('\nInputted Matrix 1:')
+
+                        print_matrix(m1, row, col, False)
+
                         m2 = userMatrix(row, col)
+
+                        print('\nInputted Matrix 2:')
+
+                        print_matrix(m2, row, col, False)
 
                         matrix = add(m1, m2, row, col)
 
@@ -470,7 +480,15 @@ def main():
 
                         m1 = userMatrix(row, col)
 
+                        print('\nInputted Matrix 1:')
+
+                        print_matrix(m1, row, col, False)
+
                         m2 = userMatrix(row, col)
+
+                        print('\nInputted Matrix 2:')
+
+                        print_matrix(m2, row, col, False)
 
                         matrix = subtract(m1, m2, row, col)
 
@@ -504,7 +522,15 @@ def main():
 
                         m1 = userMatrix(row1, col1)
 
+                        print('\nInputted Matrix 1:')
+
+                        print_matrix(m1, row1, col1, False)
+
                         m2 = userMatrix(row2, col2)
+
+                        print('\nInputted Matrix 2:')
+
+                        print_matrix(m2, row2, col2, False)
 
                         matrix = multiply(m1, m2, row1, col1, col2)
 
@@ -536,6 +562,10 @@ def main():
 
                         matrix = userMatrix(row, col)
 
+                        print('\nInputted Matrix:')
+
+                        print_matrix(matrix, row, col, False)
+
                         det = determinant(matrix)
 
                         print('\nFinal Answer:')
@@ -561,6 +591,10 @@ def main():
                     if (row == col) and (row > 0) and (col > 0):
 
                         matrix = userMatrix(row, col)
+
+                        print('\nInputted Matrix:')
+
+                        print_matrix(matrix, row, col, False)
 
                         new_matrix = inverse(matrix, row, col)
 
