@@ -268,6 +268,22 @@ def inverse(matrix, row, col):
 
     return new_matrix
 
+def transpose(matrix, row ,col):
+
+    new_matrix = []
+
+    for i in range(0, col):
+
+        new_matrix.append([])
+
+    for i in range(0, row):
+
+        for j in range(0, col):
+
+            new_matrix[j].append(matrix[i][j])
+
+    return new_matrix
+
 def print_matrix(matrix, row, col, solve = True, steps = False):
 
     if solve:
@@ -374,11 +390,13 @@ def main():
 
         print('4) Multiply Matrices')
 
-        print('5) Calculate the Determinant(No Steps)')
+        print('5) Calculate the Determinant')
 
         print('6) Calculate the Inverse')
 
-        print('7) Exit\n')
+        print('7) Find the Transpose')
+
+        print('8) Exit\n')
 
         try:
 
@@ -388,259 +406,291 @@ def main():
 
             userChoice = 0
 
-        if userChoice < 7 and userChoice != 0:
+        if userChoice == 1:
 
-            if userChoice == 1:
+            try:
 
-                try:
+                row = int(input("Enter amount of rows: "))
 
-                    row = int(input("Enter amount of rows: "))
+                col = int(input("Enter amount of columns: "))
 
-                    col = int(input("Enter amount of columns: "))
+                if row > 1 and col > 1:
 
-                    if row > 1 and col > 1:
+                    matrix = userMatrix(row, col)
 
-                        matrix = userMatrix(row, col)
+                    print('\nInputted Matrix:')
 
-                        print('\nInputted Matrix:')
+                    print_matrix(matrix, row, col)
 
-                        print_matrix(matrix, row, col)
+                    matrix = solve(matrix, row, col)
 
-                        matrix = solve(matrix, row, col)
+                    print('\nFinal Answer:')
 
-                        print('\nFinal Answer:')
+                    print_matrix(matrix, row, col)
 
-                        print_matrix(matrix, row, col)
+                    zero_count = 0
 
-                        zero_count = 0
+                    for i in range(0, col - 1):
 
-                        for i in range(0, col - 1):
+                        if matrix[row - 1][i] == 0:
 
-                            if matrix[row - 1][i] == 0:
+                            zero_count += 1
 
-                                zero_count += 1
+                    if zero_count > col - 2 and (matrix[row-1][col-1] != 0):
 
-                        if zero_count > col - 2 and (matrix[row-1][col-1] != 0):
+                        print("\nHere I found the Matrix to be inconsistent")
 
-                            print("\nHere I found the Matrix to be inconsistent")
+                        print('This is also not a Linear Combination due to the inconsistency')
 
-                            print('This is also not a Linear Combination due to the inconsistency')
+                    elif zero_count == col - 1:
 
-                        elif zero_count == col - 1:
+                        print('\nHere I found the Matrix to have infinitely many solutions')
 
-                            print('\nHere I found the Matrix to have infinitely many solutions')
+                        print('The value for "z" could be any real integer as 0 = 0')
 
-                            print('The value for "z" could be any real integer as 0 = 0')
+                else:
+
+                    print("\nMatrices must have columns and rows greater than 1")
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again")
+
+        elif userChoice == 2:
+
+            try:
+
+                row = int(input('Enter amount of rows: '))
+
+                col = int(input('Enter amount of columns: '))
+
+                if row > 0 and col > 0:
+
+                    m1 = userMatrix(row, col)
+
+                    print('\nInputted Matrix 1:')
+
+                    print_matrix(m1, row, col, False)
+
+                    m2 = userMatrix(row, col)
+
+                    print('\nInputted Matrix 2:')
+
+                    print_matrix(m2, row, col, False)
+
+                    matrix = add(m1, m2, row, col)
+
+                    print('')
+
+                    print('Final Answer:')
+
+                    print_matrix(matrix,row,col,False)
+
+                else:
+
+                    print('\nMatrices must have columns and rows greater than 0')
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again")
+
+        elif userChoice == 3:
+
+            try:
+
+                row = int(input('Enter amount of rows: '))
+
+                col = int(input('Enter amount of columns: '))
+
+                if row > 0 and col > 0:
+
+                    m1 = userMatrix(row, col)
+
+                    print('\nInputted Matrix 1:')
+
+                    print_matrix(m1, row, col, False)
+
+                    m2 = userMatrix(row, col)
+
+                    print('\nInputted Matrix 2:')
+
+                    print_matrix(m2, row, col, False)
+
+                    matrix = subtract(m1, m2, row, col)
+
+                    print('')
+
+                    print('Final Answer:')
+
+                    print_matrix(matrix,row,col,False)
+
+                else:
+
+                    print('\nMatrices must have columns and rows greater than 0')
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again")
+
+        elif userChoice == 4:
+
+            try:
+
+                row1 = int(input("Enter amount of rows for Matrix 1: "))
+
+                col1 = int(input("Enter amount of columns for Matrix 1: "))
+
+                row2 = int(input("Enter amount of rows for Matrix 2: "))
+
+                col2 = int(input("Enter amount of columns for Matrix 2: "))
+
+                if (col1 == row2) and (row1 > 0) and (col1 > 0) and (row2 > 0) and (col2 > 0):
+
+                    m1 = userMatrix(row1, col1)
+
+                    print('\nInputted Matrix 1:')
+
+                    print_matrix(m1, row1, col1, False)
+
+                    m2 = userMatrix(row2, col2)
+
+                    print('\nInputted Matrix 2:')
+
+                    print_matrix(m2, row2, col2, False)
+
+                    matrix = multiply(m1, m2, row1, col1, col2)
+
+                    print('')
+
+                    print('Final Answer:')
+
+                    print_matrix(matrix,row1,col2,False)
+
+                else:
+
+                    print('\nMatrices must have columns and rows greater than 0')
+
+                    print("To multiply Matrices, Matrix #1 number of columns must equal Matrix #2 number of rows as well")
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again")
+
+        elif userChoice == 5:
+
+            try:
+
+                row = int(input("Enter amount of rows: "))
+
+                col = int(input("Enter amount of columns: "))
+
+                if (row == col) and (row > 0) and (col > 0):
+
+                    matrix = userMatrix(row, col)
+
+                    print('\nInputted Matrix:')
+
+                    print_matrix(matrix, row, col, False)
+
+                    print('\nHere is my work:')
+
+                    det = determinant(matrix)
+
+                    print('\nFinal Answer:')
+
+                    print(det)
+
+                else:
+
+                    print('\nThere is no determinant possible as the matrix is not a square matrix')
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again")
+
+        elif userChoice == 6:
+
+            try:
+
+                row = int(input("Enter amount of rows: "))
+
+                col = int(input("Enter amount of columns: "))
+
+                if (row == col) and (row > 0) and (col > 0):
+
+                    matrix = userMatrix(row, col)
+
+                    print('\nInputted Matrix:')
+
+                    print_matrix(matrix, row, col, False)
+
+                    new_matrix = inverse(matrix, row, col)
+
+                    final = []
+
+                    if (row != 1) and (col != 1):
+
+                        for i in range(0, row):
+
+                            temp = []
+
+                            for j in range(col, col*2):
+
+                                temp.append(new_matrix[i][j])
+
+                            final.append(temp)
 
                     else:
 
-                        print("\nMatrices must have columns and rows greater than 1")
+                        final.append('1')
 
-                except:
+                    print('\nFinal Answer:')
 
-                    print("\nYou may have typed something wrong. Please try again")
+                    print_matrix(final,row,col,False)
 
-            elif userChoice == 2:
+                else:
 
-                try:
+                    print('\nThere is no inverse possible as the matrix is not a square matrix')
 
-                    row = int(input('Enter amount of rows: '))
+            except:
 
-                    col = int(input('Enter amount of columns: '))
-
-                    if row > 0 and col > 0:
-
-                        m1 = userMatrix(row, col)
-
-                        print('\nInputted Matrix 1:')
-
-                        print_matrix(m1, row, col, False)
-
-                        m2 = userMatrix(row, col)
-
-                        print('\nInputted Matrix 2:')
-
-                        print_matrix(m2, row, col, False)
-
-                        matrix = add(m1, m2, row, col)
-
-                        print('')
-
-                        print('Final Answer:')
-
-                        print_matrix(matrix,row,col,False)
-
-                    else:
-
-                        print('\nMatrices must have columns and rows greater than 0')
-
-                except:
-
-                    print("\nYou may have typed something wrong. Please try again")
-
-            elif userChoice == 3:
-
-                try:
-
-                    row = int(input('Enter amount of rows: '))
-
-                    col = int(input('Enter amount of columns: '))
-
-                    if row > 0 and col > 0:
-
-                        m1 = userMatrix(row, col)
-
-                        print('\nInputted Matrix 1:')
-
-                        print_matrix(m1, row, col, False)
-
-                        m2 = userMatrix(row, col)
-
-                        print('\nInputted Matrix 2:')
-
-                        print_matrix(m2, row, col, False)
-
-                        matrix = subtract(m1, m2, row, col)
-
-                        print('')
-
-                        print('Final Answer:')
-
-                        print_matrix(matrix,row,col,False)
-
-                    else:
-
-                        print('\nMatrices must have columns and rows greater than 0')
-
-                except:
-
-                    print("\nYou may have typed something wrong. Please try again")
-
-            elif userChoice == 4:
-
-                try:
-
-                    row1 = int(input("Enter amount of rows for Matrix 1: "))
-
-                    col1 = int(input("Enter amount of columns for Matrix 1: "))
-
-                    row2 = int(input("Enter amount of rows for Matrix 2: "))
-
-                    col2 = int(input("Enter amount of columns for Matrix 2: "))
-
-                    if (col1 == row2) and (row1 > 0) and (col1 > 0) and (row2 > 0) and (col2 > 0):
-
-                        m1 = userMatrix(row1, col1)
-
-                        print('\nInputted Matrix 1:')
-
-                        print_matrix(m1, row1, col1, False)
-
-                        m2 = userMatrix(row2, col2)
-
-                        print('\nInputted Matrix 2:')
-
-                        print_matrix(m2, row2, col2, False)
-
-                        matrix = multiply(m1, m2, row1, col1, col2)
-
-                        print('')
-
-                        print('Final Answer:')
-
-                        print_matrix(matrix,row1,col2,False)
-
-                    else:
-
-                        print('\nMatrices must have columns and rows greater than 0')
-
-                        print("To multiply Matrices, Matrix #1 number of columns must equal Matrix #2 number of rows as well")
-
-                except:
-
-                    print("\nYou may have typed something wrong. Please try again")
-
-            elif userChoice == 5:
-
-                try:
-
-                    row = int(input("Enter amount of rows: "))
-
-                    col = int(input("Enter amount of columns: "))
-
-                    if (row == col) and (row > 0) and (col > 0):
-
-                        matrix = userMatrix(row, col)
-
-                        print('\nInputted Matrix:')
-
-                        print_matrix(matrix, row, col, False)
-
-                        print('\nHere is my work:')
-
-                        det = determinant(matrix)
-
-                        print('\nFinal Answer:')
-
-                        print(det)
-
-                    else:
-
-                        print('\nThere is no determinant possible as the matrix is not a square matrix')
-
-                except:
-
-                    print("\nYou may have typed something wrong. Please try again")
-
-            else:
-
-                try:
-
-                    row = int(input("Enter amount of rows: "))
-
-                    col = int(input("Enter amount of columns: "))
-
-                    if (row == col) and (row > 0) and (col > 0):
-
-                        matrix = userMatrix(row, col)
-
-                        print('\nInputted Matrix:')
-
-                        print_matrix(matrix, row, col, False)
-
-                        new_matrix = inverse(matrix, row, col)
-
-                        final = []
-
-                        if (row != 1) and (col != 1):
-
-                            for i in range(0, row):
-
-                                temp = []
-
-                                for j in range(col, col*2):
-
-                                    temp.append(new_matrix[i][j])
-
-                                final.append(temp)
-
-                        else:
-
-                            final.append('1')
-
-                        print('\nFinal Answer:')
-
-                        print_matrix(final,row,col,False)
-
-                    else:
-
-                        print('\nThere is no inverse possible as the matrix is not a square matrix')
-
-                except:
-
-                    print("\nYou may have typed something wrong. Please try again")                    
+                print("\nYou may have typed something wrong. Please try again")
 
         elif userChoice == 7:
+
+            try:
+
+                row = int(input("Enter amount of rows: "))
+
+                col = int(input("Enter amount of columns: "))
+
+                if (row > 0) and (col > 0):
+
+                    matrix = userMatrix(row, col)
+
+                    print('\nInputted Matrix:')
+
+                    print_matrix(matrix, row, col, False)
+
+                    final = transpose(matrix, row, col)
+
+                    new_row = col
+
+                    new_col = row
+
+                    print('\nFinal Answer:')
+
+                    print_matrix(final,new_row,new_col,False)
+
+                else:
+
+                    print('\nInvalid Row or Column Size')
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again")                   
+
+        elif userChoice == 8:
 
             count = 1
 
