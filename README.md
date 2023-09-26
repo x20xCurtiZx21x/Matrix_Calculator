@@ -22,6 +22,7 @@ features to make other matrix calculations!
 - Multiplying Matrices
 - Calculating the Determinant
 - Calculating the Inverse
+- Transposing the Matrix
 
 ## Anything planned for the Future?
 Here are a few things I am working on adding to the calculator:
@@ -29,6 +30,7 @@ Here are a few things I am working on adding to the calculator:
 - Matrix Division? (Matrix division isn't really a thing, but it would be similar to multiplying
 an inverse of a matrix to another matrix)
 - Touch up stuff, such as fixing typos and simplifying code
+- Working on recreating the calculator in other programming languages
 - Other Suggestions others may think should be included!
 
 ## Questions or Suggestions?
