@@ -350,6 +350,46 @@ def print_matrix(matrix, row, col, solve = True, steps = False):
 
             print(num_str + "\t|")
 
+def eigval(matrix):
+
+    b = -float(matrix[0][0])-float(matrix[1][1])
+
+    print('\nFinding Determinant of matrix:')
+
+    c = determinant(matrix)
+
+    print('\nSolve for λ:')
+
+    print(f'(λ^2)+({b}λ)+({c})')
+
+    e1 = (-b + ((b**2)-(4*c))**(1/2))/2
+
+    e2 = (-b - ((b**2)-(4*c))**(1/2))/2
+
+    ev = [e1,e2]
+
+    print(f'\nFound eigenvalues {ev[0]} and {ev[1]}')
+
+    return ev
+
+def eigvec(matrix,ev):
+
+    m1 = [[float(matrix[0][0])-ev[0],float(matrix[0][1])],[float(matrix[1][0]),float(matrix[1][1])-ev[0]]]
+
+    m2 = [[float(matrix[0][0])-ev[1],float(matrix[0][1])],[float(matrix[1][0]),float(matrix[1][1])-ev[1]]]
+
+    print(f'\nSolving matrix, plugging in {round(ev[0],2)}:')
+
+    m1 = solve(m1, 2, 2)
+
+    print(f'\nSolving matrix, plugging in {round(ev[1],2)}:')
+
+    m2 = solve(m2, 2, 2)
+
+    evec = [[-m1[0][1],m1[0][0]],[-m2[0][1],m2[0][0]]]
+
+    return evec
+
 def userMatrix(row, col):
 
     matrix = []
@@ -396,7 +436,9 @@ def main():
 
         print('7) Find the Transpose')
 
-        print('8) Exit\n')
+        print('8) Find Eigenvalues and Eigenvectors(only 2x2 currently)')
+
+        print('9) Exit\n')
 
         try:
 
@@ -688,9 +730,42 @@ def main():
 
             except:
 
-                print("\nYou may have typed something wrong. Please try again")                   
+                print("\nYou may have typed something wrong. Please try again") 
 
         elif userChoice == 8:
+
+            try:
+
+                matrix = userMatrix(2,2)
+
+                print('\nInputted Matrix:')
+
+                print_matrix(matrix, 2, 2, False)
+
+                ev = eigval(matrix)
+
+                evec = eigvec(matrix, ev)
+
+                print('\nFinal Answer:')
+
+                print(f'The Eigenvalues are {round(ev[0],2)} and {round(ev[1],2)}\n')
+
+                print('Here are the Eigenvectors respectively:')
+
+                print(f'|{round(evec[0][0],2)}\t|\t|{round(evec[1][0],2)}\t|')
+
+                print(f'|{round(evec[0][1],2)}\t|\t|{round(evec[1][1],2)}\t|')
+
+            except:
+
+                print("\nYou may have typed something wrong. Please try again") 
+
+                print('You may have inputted a matrix that retrieves imaginary numbers')
+
+                print('I am not capable of solving this(yet)')
+ 
+
+        elif userChoice == 9:
 
             count = 1
 
