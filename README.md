@@ -32,7 +32,6 @@ features to make other matrix calculations!
 
 ### Future Plans
 Here are a few things I am working on adding to the calculator:
-- Showing steps in calculating the determinant
 - Matrix Division? (Matrix division isn't really a thing, but it would be similar to multiplying
 an inverse of a matrix to another matrix)
 - Creating a better function to calculate any square matrix eigenvalues and eigenvectors
