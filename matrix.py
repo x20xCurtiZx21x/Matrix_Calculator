@@ -2,39 +2,39 @@ def solve(matrix, row,col):
 
     temp = []
 
-    for i in range(0, row):
+    pointer = 0
 
-        for j in range(0, col):
+    while len(matrix) != 0:
 
-            if i == j:
+        for i in range(0, len(matrix)):
 
-                if int(matrix[i][j]) != 0:
+            for j in range(0, col):
 
-                    count = 0
+                if j == pointer:
 
-                    for k in range(0, len(temp)):
+                    if int(matrix[i][j]) != 0:
 
-                        if matrix[i] == temp[k]:
+                        count = 0
 
-                            count += 1
+                        for k in range(0, len(temp)):
 
-                    if count == 0:
+                            if matrix[i] == temp[k]:
 
-                        temp.append(matrix[i])
+                                count += 1
 
-    for i in range(0, row):
+                        if count == 0:
 
-        count = 0
+                            temp.append(matrix[i])
 
-        for j in range(0, len(temp)):
+                            pointer += 1
+                            
+        for i in temp:
 
-            if matrix[i] == temp[j]:
+            for j in matrix:
 
-                count += 1
+                if i == j:
 
-        if count == 0:
-
-            temp.append(matrix[i])
+                    matrix.remove(i)
 
     matrix = temp
 
