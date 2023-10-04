@@ -37,7 +37,7 @@ an inverse of a matrix to another matrix)
 - Creating a better function to calculate any square matrix eigenvalues and eigenvectors
 - Touch up stuff, such as fixing typos and simplifying code
 - Working on recreating the calculator in other programming languages
-- Other Suggestions others may think should be included!
+- Other suggestions others may think should be included!
 
 ### Questions
 If you have any questions or suggestions, feel free to reach me:
@@ -55,9 +55,10 @@ This program was created with:
   can easily access
 - To run the program:
 ```
-$ cd ../matrix_calc
+$ cd ../"matrix_calc"
 $ python matrix.py
 ```
+(Note: "matrix_calc" is a placeholder for the directory you choose to place matrix.py in)
 - Follow the program's instructions and find your calculations
 - You could also run the program in an IDE. If this is the case, I
 suggest VSCode or IDLE. To run it, select the file in the IDE and
