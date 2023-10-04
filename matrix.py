@@ -1,5 +1,47 @@
 def solve(matrix, row,col):
 
+    temp = []
+
+    for i in range(0, row):
+
+        for j in range(0, col):
+
+            if i == j:
+
+                if int(matrix[i][j]) != 0:
+
+                    count = 0
+
+                    for k in range(0, len(temp)):
+
+                        if matrix[i] == temp[k]:
+
+                            count += 1
+
+                    if count == 0:
+
+                        temp.append(matrix[i])
+
+    for i in range(0, row):
+
+        count = 0
+
+        for j in range(0, len(temp)):
+
+            if matrix[i] == temp[j]:
+
+                count += 1
+
+        if count == 0:
+
+            temp.append(matrix[i])
+
+    matrix = temp
+
+    print('\nRearrange Matrix:')
+
+    print_matrix(matrix, row, col)
+
     row_count = 0
 
     step = 1
