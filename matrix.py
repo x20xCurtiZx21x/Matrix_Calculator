@@ -1,4 +1,4 @@
-def solve(matrix, row,col):
+def solve(matrix, row, col):
 
     temp = []
 
@@ -12,7 +12,7 @@ def solve(matrix, row,col):
 
                 if j == pointer:
 
-                    if int(matrix[i][j]) != 0:
+                    if float(matrix[i][j]) != 0:
 
                         count = 0
 
@@ -27,7 +27,7 @@ def solve(matrix, row,col):
                             temp.append(matrix[i])
 
                             pointer += 1
-                            
+
         for i in temp:
 
             for j in matrix:
@@ -530,7 +530,7 @@ def main():
 
                         print('\nHere I found the Matrix to have infinitely many solutions')
 
-                        print('The value for "z" could be any real integer as 0 = 0')
+                        print('The value for a varaible could be any real number as 0 = 0 was found')
 
                 else:
 
@@ -708,29 +708,41 @@ def main():
 
                     print_matrix(matrix, row, col, False)
 
-                    new_matrix = inverse(matrix, row, col)
+                    print('\nChecking determinant:')
 
-                    final = []
+                    det = determinant(matrix)
 
-                    if (row != 1) and (col != 1):
+                    print(f'\nHere is the determiannt: {det}')
 
-                        for i in range(0, row):
+                    if det == 0:
 
-                            temp = []
-
-                            for j in range(col, col*2):
-
-                                temp.append(new_matrix[i][j])
-
-                            final.append(temp)
+                        print('\nSince the determinant is 0, there is no possible inverse')
 
                     else:
 
-                        final.append('1')
+                        new_matrix = inverse(matrix, row, col)
 
-                    print('\nFinal Answer:')
+                        final = []
 
-                    print_matrix(final,row,col,False)
+                        if (row != 1) and (col != 1):
+
+                            for i in range(0, row):
+
+                                temp = []
+
+                                for j in range(col, col*2):
+
+                                    temp.append(new_matrix[i][j])
+
+                                final.append(temp)
+
+                        else:
+
+                            final.append('1')
+
+                        print('\nFinal Answer:')
+
+                        print_matrix(final,row,col,False)
 
                 else:
 
