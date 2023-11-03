@@ -24,7 +24,11 @@ def solve(matrix, row, col):
 
                         if count == 0:
 
-                            temp.append(matrix[i])
+                            for k in matrix:
+
+                                if k == matrix[i]:
+
+                                    temp.append(k)
 
                             pointer += 1
 
